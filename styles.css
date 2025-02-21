@@ -69,6 +69,9 @@ header h1{
 h3{
     color : var(--Red);
 }
+h3 img{
+    display : none;
+}
 .btn{
     display : none;
 }
@@ -248,5 +251,75 @@ h3{
     padding : 6px 4px;
 }
 
+@media (max-width : 520px){
+    body{
+        width : 90vw;
+        margin : 0 auto;
+    }
+    header{
+        width : 100%;
+    }
+    .cart{
+        right : -500px;
+        width : 100vw;
+        transition : right 0.5s ease-out;
+        margin : 0;
+        max-height : 100vh;
+    }
+    .desert-menu{
+        display : grid;
+        grid-template-columns : 1fr;
+        width : 100%;
+        justify-items : center;
+    }
+    .item{
+        width : 80%;
+        margin-bottom : 1.5rem;
+    }
+    header div{
+        align-content: center;
+        position : relative;
+        margin-right : 0.5rem;
+    }
+    header span{
+        font-weight : bold;
+        position : absolute;
+        right : -12px;
+        bottom : -2px;
+        background-color: var(--Red);
+        border-radius: 50%;
+        color : var(--Rose50);
+        font-size : 0.65rem;
+        width: 20px;  
+        height: 20px;
+        display : flex;
+        align-items: center;
+        justify-content: center;
 
+    }
+    body.showCart .cart{
+        right : 0;
+    }
+    h3{
+        display : flex;
+    }
+
+    h3 img{
+        display : block;
+        margin-left : auto;
+        width : 12px;
+    }
+}
+@media(min-width : 520px) and (max-width : 1000px){
+    body {
+        width : 90vw;
+    }
+    .desert-menu{
+        grid-template-columns : repeat(2, 1fr);
+        width : calc(90vw - 400px)
+    }
+    .cart{
+        right: calc((100vw - 88vw) / 2 - 1rem)
+    }
+}
  

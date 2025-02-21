@@ -1,5 +1,5 @@
 import { updateDesertSection } from "./dom.js";
-import { updatecart } from "./cart.js";
+import { updatecart, cartTotal } from "./cart.js";
 
 async function data(){
     try{

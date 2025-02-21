@@ -1,14 +1,23 @@
 import { data } from "./script.js";
 import { updateCartDOM, orderTotal, removeProductInCart } from "./dom.js";
 
-
+const body = document.querySelector('body')
 const totalSpan = document.querySelector('.cart-quantity');
 const emptyCart = document.querySelector('.empty-product-quantity');
 const productCart = document.querySelector('.product-quantity');
 const cartBtn = document.querySelector('.btn')
+const cartTotal = document.querySelector('header span')
+const closeBtn = document.querySelector('h3 img')
+
 
 
 async function updatecart(){
+     cartTotal.addEventListener('click', ()=>{ 
+        body.classList.toggle('showCart')
+     })
+     closeBtn.addEventListener('click', ()=>{
+        body.classList.toggle('showCart')
+    })
     const dataArr = await data()
     let cart = [];
 
@@ -51,6 +60,7 @@ async function updatecart(){
             emptyCart.style.display = 'block'
         }
         totalSpan.textContent = totalQuantity
+        cartTotal.textContent = totalQuantity
     }
     
     document.addEventListener('click', (e) =>{
@@ -75,4 +85,4 @@ async function updatecart(){
 
 }
 
-export { updatecart }
+export { updatecart, cartTotal }

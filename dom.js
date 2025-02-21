@@ -77,7 +77,8 @@ function productInCart(item){
     const productBtn = document.querySelector(`.item-image button[data-id="${item.product_Id}"]`)
     productBtn.replaceChildren()
     productBtn.className = 'productButton'
-    productImgDiv.style.border = '3px solid hsl(14, 86%, 42%)';
+    productImgDiv.style.border = '2px solid hsl(14, 86%, 42%)';
+    productImgDiv.style.borderRadius = "0.55rem";
     const removeBtn = document.createElement('img')
     removeBtn.classList.add('remove')
     removeBtn.src ='/assets/images/icon-decrement-quantity.svg';
