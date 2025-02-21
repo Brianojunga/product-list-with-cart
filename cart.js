@@ -1,10 +1,16 @@
 import { data } from "./script.js";
+import { updateCartDOM, orderTotal, removeProductInCart } from "./dom.js";
 
 
-//async 
-function updatecart(){
-   // const dataArr = await data()
-    const cart = [];
+const totalSpan = document.querySelector('.cart-quantity');
+const emptyCart = document.querySelector('.empty-product-quantity');
+const productCart = document.querySelector('.product-quantity');
+const cartBtn = document.querySelector('.btn')
+
+
+async function updatecart(){
+    const dataArr = await data()
+    let cart = [];
 
     function setCart(dataId, position, quantity){
         if(quantity > 0){
@@ -16,16 +22,34 @@ function updatecart(){
             }else{
                 cart[position].Quantity = quantity
             }
+        }else{
+            cart.splice(position, 1)
+            removeProductInCart(dataId)
         }
+        localStorage.setItem('Cart', JSON.stringify(cart))
         reshFreshHTML()
     }
 
     function reshFreshHTML(){
-        const totalSpan = document.querySelector('.cart-quantity')
+        productCart.replaceChildren()
         let totalQuantity = 0;
+        let totalPrice = 0;
         cart.forEach(item =>{
+            if(!item) return
             totalQuantity += item.Quantity
+            const product = dataArr.find(product => product.id == item.product_Id);
+            totalPrice += (item.Quantity * product.price)
+            updateCartDOM(item, product, productCart)
         })
+
+        if(totalQuantity > 0){
+            cartBtn.style.display = 'grid';
+            emptyCart.style.display = 'none';
+            orderTotal(totalPrice, productCart)
+        }else{
+            cartBtn.style.display = 'none';
+            emptyCart.style.display = 'block'
+        }
         totalSpan.textContent = totalQuantity
     }
     
@@ -35,11 +59,19 @@ function updatecart(){
         const position = cart.findIndex(item => item.product_Id == dataId)
         let quantity = position < 0 ? 0 : cart[position].Quantity
 
-        if(buttonClick.classList.contains('add')){
+        if(buttonClick.classList.contains('add') || buttonClick.classList.contains('addProduct')){
             quantity++
+            setCart(dataId, position, quantity)
+        }else if(buttonClick.classList.contains('delete')){
+            quantity = 0;
+            setCart(dataId, position, quantity)
+        }else if(buttonClick.classList.contains('remove')){
+            quantity--
             setCart(dataId, position, quantity)
         }
     })
+    cart = JSON.parse(localStorage.getItem('Cart'))
+    reshFreshHTML()
 
 }
 
