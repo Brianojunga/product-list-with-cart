@@ -69,7 +69,7 @@ header h1{
 h3{
     color : var(--Red);
 }
-h3 img{
+h3 img, header div{
     display : none;
 }
 .btn{
@@ -176,7 +176,7 @@ h3 img{
     font-size : 0.85rem;
 }
 ::-webkit-scrollbar{
-    width : 1rem;
+    width : 0.5rem;
     background-color : transparent
 }
 ::-webkit-scrollbar-track{
@@ -251,7 +251,7 @@ h3 img{
     padding : 6px 4px;
 }
 
-@media (max-width : 520px){
+@media (max-width : 600px){
     body{
         width : 90vw;
         margin : 0 auto;
@@ -260,7 +260,7 @@ h3 img{
         width : 100%;
     }
     .cart{
-        right : -500px;
+        right : -800px;
         width : 100vw;
         transition : right 0.5s ease-out;
         margin : 0;
@@ -268,7 +268,7 @@ h3 img{
     }
     .desert-menu{
         display : grid;
-        grid-template-columns : 1fr;
+        grid-template-columns : repeat(auto-fit, minmax(200px, 1fr));;
         width : 100%;
         justify-items : center;
     }
@@ -280,6 +280,7 @@ h3 img{
         align-content: center;
         position : relative;
         margin-right : 0.5rem;
+        display : block;
     }
     header span{
         font-weight : bold;
@@ -309,17 +310,23 @@ h3 img{
         margin-left : auto;
         width : 12px;
     }
+
 }
-@media(min-width : 520px) and (max-width : 1000px){
+@media(min-width : 600px) and (max-width : 1200px){
     body {
         width : 90vw;
     }
     .desert-menu{
-        grid-template-columns : repeat(2, 1fr);
-        width : calc(90vw - 400px)
+        grid-template-columns : repeat(auto-fit, minmax(200px, 1fr));
+        width : 60%;
+        justify-items : center;
     }
     .cart{
-        right: calc((100vw - 88vw) / 2 - 1rem)
+        right: 0;
+    }
+    .btn button:first-child{
+        display : flex;
+        white-space : nowrap;
     }
 }
  
