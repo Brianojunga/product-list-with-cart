@@ -105,5 +105,31 @@ function removeProductInCart(dataId){
     productBtn.append(cartImg, span1)
 }
 
+function OrderConfirmationSection(item, product, main){
+    const div = document.createElement('div');
+    const prdctImg = document.createElement('img');
+    prdctImg.src = product.image.thumbnail
+    const ParaDiv = document.createElement('div');
+    const para1 = document.createElement('p');
+    para1.textContent = product.name
+    const span1 = document.createElement('span')
+    span1.classList.add('quantity-span')
+    span1.textContent = `${item.Quantity}x`
+    const span2 = document.createElement('span')
+    span2.classList.add('price')
+    span2.textContent = `@ $${product.price.toFixed(2)}`
+    const span3 = document.createElement('p')
+    span3.classList.add('total-product-price')
+    span3.textContent = `$${(product.price * item.Quantity).toFixed(2)}`;
+    ParaDiv.append(para1, span1, span2 )
+    div.append(prdctImg, ParaDiv, span3)
+    main.appendChild(div)
+}
 
-export {updateDesertSection, updateCartDOM, orderTotal, removeProductInCart}
+
+export {updateDesertSection, updateCartDOM, orderTotal, removeProductInCart, OrderConfirmationSection}
+
+
+
+
+    

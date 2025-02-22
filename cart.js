@@ -1,5 +1,5 @@
 import { data } from "./script.js";
-import { updateCartDOM, orderTotal, removeProductInCart } from "./dom.js";
+import { updateCartDOM, orderTotal, removeProductInCart, OrderConfirmationSection } from "./dom.js";
 
 const body = document.querySelector('body')
 const totalSpan = document.querySelector('.cart-quantity');
@@ -8,14 +8,22 @@ const productCart = document.querySelector('.product-quantity');
 const cartBtn = document.querySelector('.btn')
 const cartTotal = document.querySelector('header span')
 const closeBtn = document.querySelector('h3 img')
+const modal = document.querySelector('.modal')
+const confirmOrderbtn = document.querySelector('.confirmOrderBtn')
+const refresh = document.querySelector('.refresh')
+const orderSection = document.querySelector('.orders')
+    
+
 
 
 
 async function updatecart(){
-     cartTotal.addEventListener('click', ()=>{ 
+     cartTotal.addEventListener('click', (e)=>{ 
+        e.stopPropagation()
         body.classList.toggle('showCart')
      })
-     closeBtn.addEventListener('click', ()=>{
+     closeBtn.addEventListener('click', (e)=>{
+        e.stopPropagation()
         body.classList.toggle('showCart')
     })
     const dataArr = await data()
@@ -61,6 +69,33 @@ async function updatecart(){
         }
         totalSpan.textContent = totalQuantity
         cartTotal.textContent = totalQuantity
+        OrderConfirmation(cart, dataArr, orderSection, totalPrice)
+    }
+
+    
+ function OrderConfirmation(cart, dataArr, orderSection, totalPrice){
+        confirmOrderbtn.addEventListener('click', (e) =>{
+            e.stopPropagation()
+            orderSection.replaceChildren()
+            modal.showModal()
+            cart.forEach(item =>{
+                const product = dataArr.find(product => product.id == item.product_Id);
+                OrderConfirmationSection(item, product, orderSection)
+            })
+            orderTotal(totalPrice, orderSection)
+        })
+        startNewOrder(cart)
+    }
+    
+    function startNewOrder(cart){
+        refresh.addEventListener('click', e =>{
+            e.stopPropagation()
+            cart.forEach(item => removeProductInCart(item.product_Id))
+            cart.length = 0;
+            localStorage.setItem('Cart', JSON.stringify(cart))
+            reshFreshHTML()
+            modal.close()
+        })
     }
     
     document.addEventListener('click', (e) =>{
