@@ -116,7 +116,7 @@ async function updatecart(){
             setCart(dataId, position, quantity)
         }
     })
-    cart = JSON.parse(localStorage.getItem('Cart'))
+    cart = JSON.parse(localStorage.getItem('Cart')) || []
     reshFreshHTML()
 
 }
