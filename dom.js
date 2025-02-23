@@ -54,7 +54,7 @@ function updateCartDOM(item, product, main){
     span3.textContent = `$${(product.price * item.Quantity).toFixed(2)}`;
     ParaDiv.append(para1, span1, span2, span3)
     const deleteBtn = document.createElement('img');
-    deleteBtn.src = '/assets/images/icon-remove-item.svg'
+    deleteBtn.src = './assets/images/icon-remove-item.svg'
     deleteBtn.dataset.id = item.product_Id
     deleteBtn.classList.add('delete');
     div.append(ParaDiv, deleteBtn)
@@ -81,13 +81,13 @@ function productInCart(item){
     productImgDiv.style.borderRadius = "0.55rem";
     const removeBtn = document.createElement('img')
     removeBtn.classList.add('remove')
-    removeBtn.src ='/assets/images/icon-decrement-quantity.svg';
+    removeBtn.src ='./assets/images/icon-decrement-quantity.svg';
     removeBtn.dataset.id = item.product_Id
     const span1 = document.createElement('span')
     span1.textContent = item.Quantity
     const addBtn = document.createElement('img')
     addBtn.classList.add('addProduct')
-    addBtn.src = '/assets/images/icon-increment-quantity.svg'
+    addBtn.src = './assets/images/icon-increment-quantity.svg'
     addBtn.dataset.id = item.product_Id
     productBtn.append(removeBtn, span1, addBtn)
 }
