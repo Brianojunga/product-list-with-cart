@@ -156,6 +156,10 @@ h3 img, header div{
     white-space : nowrap;
     color : var(--Rose900);
 }
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
 
 .para{
     margin-top : 2rem;
