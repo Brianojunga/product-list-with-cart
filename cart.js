@@ -94,6 +94,7 @@ async function updatecart(){
             cart.length = 0;
             localStorage.setItem('Cart', JSON.stringify(cart))
             reshFreshHTML()
+            body.classList.remove('showCart')
             modal.close()
         })
     }

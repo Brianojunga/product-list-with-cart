@@ -76,7 +76,7 @@ h3 img, header div{
     display : none;
 }
 
-.btn button{
+.btn button, .refresh{
     margin : 0.25rem 0;
     padding : 0.5rem;
     border : none;
@@ -91,7 +91,7 @@ h3 img, header div{
     justify-content: center;
     align-items : center;
 }
-.btn button:last-child{
+.btn button:last-child, .refresh{
     background-color : var(--Red);
     color : var(--Rose50);
     border-radius : 1rem;
@@ -251,6 +251,82 @@ h3 img, header div{
     padding : 6px 4px;
 }
 
+.modal{
+    position : fixed;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    border : none;
+    width : 350px;
+    padding : 1rem;
+    background-color : var(--Rose50);
+    border-radius : 0.5rem;
+    animation : closeModal 1000ms ease-in;
+}
+
+.modal .orders{
+    background-color: var(--Rose100);
+    padding : 0.75rem;
+    margin : 1rem 0;
+}
+
+.orders > div{
+    display : flex;
+    height : 60px; 
+    padding : 1rem  0;
+    justify-content : space-between;
+}
+.orders .prdctDetails{
+    width : 100%;
+    display : flex;
+    gap : 0.5rem;
+}
+
+.orders > div div p{
+    font-size : 0.75rem;
+    font-weight : bold;
+    color : var(--Rose900)
+}
+
+.orders > div div span{
+    font-size: 0.75rem;
+    margin-right : 0.5rem;
+}
+.orders > div > p{
+    align-content: center;
+    font-size: 0.75rem;
+    color : var(--Rose900)
+}
+
+.orders div:last-child{
+    align-items: center;
+}
+
+.orders > div:last-child span:first-child{
+    font-size: 0.75rem;
+}
+.orders > div:last-child span:last-child{
+    font-weight : bold;
+    color : var(--Rose900)
+}
+
+.orders div:not(:last-child, .prdctDetails){
+    border-bottom: 1px solid var(--Rose300);
+}
+
+.order-text{
+    font-weight : bold;
+    color : var(--Rose900);
+    font-size : 1.5rem;
+}
+.food-enjoyment{
+    font-size : 0.8rem;
+    color : var(--Rose400)
+}
+.refresh{
+    width : 100%;
+}
+
 @media (max-width : 600px){
     body{
         width : 90vw;
@@ -310,8 +386,42 @@ h3 img, header div{
         margin-left : auto;
         width : 12px;
     }
+    .modal{
+        width : 100vw;
+    }
 
 }
+
+.modal[open]{
+    display : block;
+    animation: showModal 500ms ease-out forwards;
+}
+
+@keyframes showModal{
+    from{
+        opacity : 0;
+        transform : translate(-50%, -60%)
+    }
+    to{
+        opacity : 1;
+        transform : translate(-50%, -50%);
+    }
+}
+
+
+@keyframes closeModal{
+    from{
+        display : block;
+        opacity : 1;
+        transform : translate(-50%, -50%);;
+    }
+    to{
+        display : none;
+        opacity : 0;
+        transform : translate(-50%, -40%);
+    }
+}
+
 @media(min-width : 600px) and (max-width : 1200px){
     body {
         width : 90vw;
@@ -329,4 +439,6 @@ h3 img, header div{
         white-space : nowrap;
     }
 }
+
+
  

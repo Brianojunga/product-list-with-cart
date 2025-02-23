@@ -109,6 +109,8 @@ function OrderConfirmationSection(item, product, main){
     const div = document.createElement('div');
     const prdctImg = document.createElement('img');
     prdctImg.src = product.image.thumbnail
+    const ParaDivImg = document.createElement('div');
+    ParaDivImg.classList.add('prdctDetails')
     const ParaDiv = document.createElement('div');
     const para1 = document.createElement('p');
     para1.textContent = product.name
@@ -122,7 +124,8 @@ function OrderConfirmationSection(item, product, main){
     span3.classList.add('total-product-price')
     span3.textContent = `$${(product.price * item.Quantity).toFixed(2)}`;
     ParaDiv.append(para1, span1, span2 )
-    div.append(prdctImg, ParaDiv, span3)
+    ParaDivImg.append(prdctImg, ParaDiv)
+    div.append(ParaDivImg, span3)
     main.appendChild(div)
 }
 
